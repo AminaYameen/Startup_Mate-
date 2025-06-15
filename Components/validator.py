@@ -11,8 +11,8 @@ import streamlit as st
 load_dotenv()
 
 # Set keys
-os.environ["SERPER_API_KEY"] = st.secrets("SERPER_API_KEY")
-os.environ["GROQ_API_KEY"] = st.secrets("GROQ_API_KEY")
+os.environ["SERPER_API_KEY"] = st.secrets["SERPER_API_KEY"]
+os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
 # Initialize LLM
 llm = ChatGroq(
