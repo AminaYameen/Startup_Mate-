@@ -3,11 +3,25 @@ from langchain_groq import ChatGroq
 import os
 from pptx import Presentation
 from pptx.util import Inches
+from openai import OpenAI
+from langchain.chat_models import ChatOpenAI
 
 # Initialize LLM
-llm = ChatGroq(
-    groq_api_key=os.environ["GROQ_API_KEY"],
-    model_name="meta-llama/llama-4-scout-17b-16e-instruct"
+# llm = ChatGroq(
+#     groq_api_key=os.environ["GROQ_API_KEY"],
+#     model_name="meta-llama/llama-4-scout-17b-16e-instruct"
+# )
+client = OpenAI(
+    base_url="https://api.novita.ai/v3/openai",
+    api_key=os.environ["NOVITA_API_KEY"],
+)
+
+# LangChain-compatible wrapper using Novita model
+llm = ChatOpenAI(
+    openai_api_base="https://api.novita.ai/v3/openai",
+    openai_api_key=os.environ["NOVITA_API_KEY"],
+    model="meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
+    temperature=0.7
 )
 
 problem_prompt = PromptTemplate(
@@ -60,7 +74,7 @@ def generate_solution(problem_statement: str) -> str:
     return response.content.strip()
 
 # Generate pitch deck PPT
-def create_pitch_deck(startup_name: str, problem: str, solution: str, report: str, unique_angle: str):
+def create_pitch_deck(startup_name: str, problem: str, solution: str, report: str):
     prs = Presentation()
     
     # Slide 1 - Startup Name
@@ -95,10 +109,10 @@ def create_pitch_deck(startup_name: str, problem: str, solution: str, report: st
         if "|" in line and not line.startswith("|------")
     ][:5])
 
-    # Slide 6 - Unique Angle
-    slide = prs.slides.add_slide(prs.slide_layouts[1])
-    slide.shapes.title.text = "Unique Angle"
-    slide.placeholders[1].text = unique_angle
+    # # Slide 6 - Unique Angle
+    # slide = prs.slides.add_slide(prs.slide_layouts[1])
+    # slide.shapes.title.text = "Unique Angle"
+    # slide.placeholders[1].text = unique_angle
 
         # ✅ Ensure folder exists
     output_dir = "./presentations"

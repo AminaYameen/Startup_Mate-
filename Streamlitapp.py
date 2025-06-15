@@ -87,7 +87,7 @@ elif main_section == "📊 Pitch Deck Creation":
                     problem=selected_problem,
                     solution=solution,
                     report=st.session_state.research_report,
-                    unique_angle="We'll use AI + community + virtual events to dominate this space."
+                    # unique_angle="We'll use AI + community + virtual events to dominate this space."
                 )
                 with open(ppt_path, "rb") as f:
                     st.download_button("📥 Download Pitch Deck", f, file_name="pitch_deck.pptx")
@@ -135,9 +135,6 @@ elif main_section == "💰 Funding Advisor":
     if not startup_idea:
         st.warning("Please generate your startup idea first using the Idea Generator or MVP Builder.")
     else:
-        # st.markdown("### Startup Idea")
-        # st.info(startup_idea)
-
         if not domain:
             with st.spinner("Extracting domain..."):
                 domain = extract_domain(startup_idea)
@@ -146,19 +143,20 @@ elif main_section == "💰 Funding Advisor":
         st.markdown("### Domain")
         st.code(domain)
 
-        if st.button("🔍 Find Investors"):
-            with st.spinner("Searching investors using Google..."):
+
+        if st.button("🔍 Find Investors / Funding Sources"):
+            with st.spinner(f"Searching using Google..."):
                 investors = find_investors(startup_idea, domain)
                 st.session_state["funding_investors"] = investors
 
         if "funding_investors" in st.session_state:
             investors = st.session_state["funding_investors"]
             if investors:
-                st.markdown("### 🔗 Suggested Investors")
+                st.markdown("### 🔗 Suggested Contacts / Sources")
                 for investor in investors:
                     st.markdown(f"**{investor['name']}**")
                     st.write(investor['intro'])
-                    st.markdown(f"[🔗 Profile]({investor['link']})")
+                    st.markdown(f"[🔗 Profile]({investor['Website-link']})")
 
                 if st.button("✉️ Generate Cold Emails"):
                     for investor in investors:

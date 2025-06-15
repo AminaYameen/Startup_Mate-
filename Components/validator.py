@@ -6,6 +6,8 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableSequence
 import streamlit as st
+from openai import OpenAI
+from langchain.chat_models import ChatOpenAI
 
 # Load env vars
 load_dotenv()
@@ -13,13 +15,25 @@ load_dotenv()
 # Set keys
 os.environ["SERPER_API_KEY"] = st.secrets["SERPER_API_KEY"]
 os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+os.environ["NOVITA_API_KEY"] = st.secrets["NOVITA_API_KEY"]
 
 # Initialize LLM
-llm = ChatGroq(
-    groq_api_key=os.environ["GROQ_API_KEY"],
-    model_name="meta-llama/llama-4-scout-17b-16e-instruct"
+# llm = ChatGroq(
+#     groq_api_key=os.environ["GROQ_API_KEY"],
+#     model_name="meta-llama/llama-4-scout-17b-16e-instruct"
+# )
+client = OpenAI(
+    base_url="https://api.novita.ai/v3/openai",
+    api_key=os.environ["NOVITA_API_KEY"],
 )
 
+# LangChain-compatible wrapper using Novita model
+llm = ChatOpenAI(
+    openai_api_base="https://api.novita.ai/v3/openai",
+    openai_api_key=os.environ["NOVITA_API_KEY"],
+    model="meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
+    temperature=0.2
+)
 # Google search tool
 search_tool = GoogleSerperAPIWrapper()
 
@@ -36,6 +50,7 @@ agent = initialize_agent(
     tools=tools,
     llm=llm,
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    handle_parsing_errors=True,
     verbose=True
 )
 
