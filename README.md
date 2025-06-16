@@ -4,21 +4,32 @@ This project was developed as part of the **TRAE AI Hackathon 2025** to empower 
 
 ---
 
-## 🧠 What It Does
+🌟 Features
 
-This app helps users go from **idea to investor-ready** using powerful AI tools. The pipeline:
 
-1. **Idea Validation (RAG-based)**  
-   Scrapes market data from Google, Crunchbase, Reddit, etc., and gives a validation report with competitors and market gaps.
+1. Startup Idea Validator
+AI-powered market research
+Competitor analysis
+Market need assessment
+Unique value proposition identification
 
-2. **Business Plan Generator**  
-   Uses LLMs to create a mini pitch deck (problem, solution, market, monetization). Downloadable in PPT or PDF.
+3. Business Plan Generator
+Automated pitch deck creation
+Problem-solution analysis
+Market size evaluation
+Monetization strategy suggestions
 
-3. **MVP Builder**  
-   Assists with defining tech stack, user stories, DB schema, and roadmap.
+4. MVP Builder Assistant
+Tech stack recommendations
+User story generation
+Database schema design
+Feature roadmap planning
 
-4. **Funding Advisor**  
-   Recommends investors/accelerators using live search. Auto-drafts cold outreach emails.
+5. Funding Advisor
+Investor matching
+Accelerator recommendations
+Email pitch templates
+Funding strategy guidance
 
 ---
 
