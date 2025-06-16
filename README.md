@@ -89,6 +89,9 @@ NOVITA_API_KEY = "your_novita_api_key"
 This project was created to enable non-technical founders to shape their idea into something fundable in less than 30 minutes using the power of AI and automation.
 
 ## 🤝 Contributing
-If you want to improve components or add integrations, feel free to fork and submit a PR!
-
+Fork the repository
+1- Create your feature branch (git checkout -b feature/AmazingFeature)
+2- Commit your changes (git commit -m 'Add some AmazingFeature')
+3- Push to the branch (git push origin feature/AmazingFeature)
+4- Open a Pull Request
 
