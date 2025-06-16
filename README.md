@@ -33,21 +33,20 @@ Funding strategy guidance
 
 ---
 
-## 🗂️ Project Structure
+🚀 Tech Stack
+Frontend
+React.js
+HTML5
+CSS3
+JavaScript
+React Router for navigation
+Modern UI/UX design
 
-.
-├── Components/
-│ ├── business_plan.py # Logic for business plan generation
-│ ├── funding_advisor.py # Investor search + email generation
-│ ├── mvp_builder.py # MVP feature planner
-│ └── validator.py # RAG-based idea validator
-├── presentations/ # (Optional) Pitch deck outputs
-├── app.py # App launcher (optional)
-├── Streamlitapp.py # Main Streamlit interface
-├── research.ipynb # Notebook for early data exploration/testing
-├── requirements.txt # Dependencies list
-├── README.md # You're reading it!
-└── .env / .gitignore # Local config / exclusions
+Backend (Planned)
+Django
+Python
+RESTful APIs
+AI/ML integration
 
 
 ---
